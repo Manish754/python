@@ -9,7 +9,7 @@ stages {
     stage('gitclone')
 
         step {
-            git "https://github.com/Manish754/python.git"
+            git 'https://github.com/Manish754/python.git'
         }
 }
 
