@@ -44,13 +44,12 @@ pipeline {
                 }
             }
         }
-        stage("running in staging") {
+       stage("running in staging")
             def remote = [:]
             remote.name = “ubuntu
             remote.host = "3.144.212.131"
             remote.allowAnyHosts = true
-
-       node {
+        
     withCredentials([sshUserPrivateKey(credentialsId: 'sshUser', keyFileVariable: 'identity', passphraseVariable: '', usernameVariable: 'ubuntu')]) {
              remote.user = ubuntu
              remote.identityFile = identity
