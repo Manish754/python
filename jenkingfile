@@ -1,8 +1,8 @@
 def image
 pipeline {
     environment {
-        registry = "manish754/python"
-        registryCredential = '1f2cc397-d251-4bb0-87ba-7a7099091fd5'
+        registry = "manish754/pipepline"
+        registryCredential = 'dockerhub_id'
         dockerImage = ''
     }
     agent any
@@ -44,6 +44,24 @@ pipeline {
                 }
             }
         }
+        stage("running in staging") {
+            def remote = [:]
+            remote.name = “ubuntu
+            remote.host = "3.144.212.131"
+            remote.allowAnyHosts = true
+
+       node {
+    withCredentials([sshUserPrivateKey(credentialsId: 'sshUser', keyFileVariable: 'identity', passphraseVariable: '', usernameVariable: 'ubuntu')]) {
+             remote.user = ubuntu
+             remote.identityFile = identity
+             stage("SSH Steps Rocks!") {
+             //sshCommand remote: remote, command: ‘docker pull ${image}’
+              writeFile file: 'abc.sh', text: 'date'
+              sshPut remote: remote, from: 'abc.sh', into: '.'
+              }
+            }
+           }
+       }   
  }
  
 }
